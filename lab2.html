@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 1</title>
+    <style>
+        .btn-container-wrapper {
+            display: flex; /* Располагает кнопки горизонтально */
+            gap: 10px; /* Расстояние между кнопками */
+        }
+        .btn-container {
+            display: inline-block;
+        }
+        .btn {
+            display: block;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            width: 200px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            display: none;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            overflow: auto;
+        }
+        pre {
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>Лабораторна робота 2</h2>
+    <div class="btn-container-wrapper">
+        <div class="btn-container">
+            <button class="btn" onclick="toggleContent('links')">Завдання 1</button>
+            <div id="links" class="content">
+                <ul>
+                    <button><li style="list-style-type: none;"><a href="Lab2_1.html" onclick="loadCode('Lab2_1.html')" style="text-decoration: none;">Виконання</a></li></button>
+                </ul>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="toggleContent('links1')">Завдання 2</button>
+            <div id="links1" class="content">
+                <ul>
+                    <button><li style="list-style-type: none;"><a href="Lab2_2.html" onclick="loadCode('Lab2_2.html')" style="text-decoration: none;">Виконання1</a></li></button>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(id) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                if (content.id !== id) {
+                    content.style.display = 'none';
+                }
+            });
+
+            const content = document.getElementById(id);
+            content.style.display = content.style.display === 'none' || content.style.display === '' ? 'block' : 'none';
+        }
+
+        function loadCode(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('codeDisplay').textContent = data;
+                })
+                .catch(error => console.error('Error loading code:', error));
+            return false; 
+        }
+    </script>
+</body>
+</html>
